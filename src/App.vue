@@ -23,7 +23,7 @@
 
 <template>
   <div>
-    <v-header v-bind:seller="seller"></v-header>
+    <v-header :seller="seller"></v-header>
     <div class="tab border-1px">
 		<div class="tab-item">
 			<router-link to ="/goods">商品</router-link>
