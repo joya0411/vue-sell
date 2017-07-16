@@ -4,6 +4,7 @@
             <ul>
                 <li class="menu-item" v-for="(item,index) in goods" :key="index" :class="{'current': currentIndex === index }" @click="selectMenu(index,$event)">
                     <div class="type-text border-1px">
+                        <span class="count" v-show="foodTypeCount(index)>0">{{foodTypeCount(index)}}</span>
                         <i class="iconMap" v-show="item.type>0" :class="classMap[item.type]"></i>
                         <span class="txt">{{item.name}}</span>
                     </div>
@@ -33,20 +34,23 @@
                                     </span>
                                     <span class="oldPrice" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                                 </div>
-
+                                <div class="cartcontrol-wrapper">
+                                    <cartcontrol :food="food"></cartcontrol>
+                                </div>
                             </div>
                         </li>
                     </ul> 
                 </li>
             </ul>
         </div>
-         <shopCart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopCart> 
+         <shopCart :selectFoods="selectFoods" :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></shopCart> 
     </div>
 </template>
 
 <script>
     import BScroll from 'better-scroll';
     import shopCart from '../shopCart/shopCart';
+    import cartcontrol from 'components/cartcontrol/cartcontrol';
 
     const ERR_OK = 0;
     export default{
@@ -87,9 +91,34 @@
                     }
                 }
                 return 0;
+            },
+            selectFoods(){
+                let foods=[];
+                this.goods.forEach(good=>{
+                    let foodTypeName = good.name;
+                    good.foods.forEach(food=>{
+                        if (food.count){
+                            foods.push(food);
+                        }
+                    });
+                });
+                return foods;
             }
+            
         },
         methods:{
+            /*
+             * 计算每一类别的数量
+             */
+            foodTypeCount(index){
+                let count = 0;
+                this.goods[index].foods.forEach(food=>{
+                    if (food.count){
+                        count += food.count;
+                    }
+                });
+                return count;
+            },
             /*
              * 点击左侧菜单
              */
@@ -109,6 +138,7 @@
                     click:true
                 });
                 this.foodScroll = new BScroll(this.$refs.foodWrapper,{
+                    click:true,
                     probeType:3
                 });
                 this.foodScroll.on('scroll',(pos)=>{
@@ -128,9 +158,11 @@
                     this.listHeight.push(height);
                 }
             }
+            
         },
         components:{
-            shopCart
+            shopCart,
+            cartcontrol
         }
     }
 </script>
@@ -156,9 +188,22 @@
                     height:54px
                     font-size:0;
                     .type-text
+                        position:relative
                         display:table-cell
                         vertical-align:middle
                         border-1px(rgba(7,17,27,0.1))
+                        .count
+                            position:absolute
+                            top:5px
+                            right:-8px
+                            background: #f01414
+                            color:#fff
+                            font-size:9px
+                            width:12px
+                            height:12px
+                            line-height:12px
+                            border-radius:50%
+                            text-align:center
                         .iconMap
                             display:inline-block
                             width:12px
@@ -258,5 +303,9 @@
                             text-decoration: line-through;
                             color: #93999f;
                             padding-left: 4px;
-
+                    .cartcontrol-wrapper
+                        position:absolute
+                        bottom:12px
+                        right:0
+                        z-index:20
 </style>
