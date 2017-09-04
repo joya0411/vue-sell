@@ -36,6 +36,7 @@
                 } else {
                     this.food.count++;
                 }
+                this.$emit('add',event.target);
             },
             /*
              * 购买减1
@@ -71,16 +72,11 @@
                 transform:rotate(0)
             &.fade-enter-active,&.fade-leave-active
                 transition: all .2s linear
-            &.fade-enter,&.fade-leave-active
+            &.fade-enter,&.fade-leave-to
                 opacity:0
                 transform:translate3d(24px,0,0)
                 .icon-remove_circle_outline
                     transform:rotate(180deg)
-
-                
-              
-                    
-
         .cart-count
             display:inline-block
             vertical-align:middle

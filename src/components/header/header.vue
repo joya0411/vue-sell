@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="support-count" @click="showDetail">
-				<div class="count">{{seller.supports.length + '个'}}</div>
+				<div class="count" v-if="seller.supports">{{seller.supports.length + '个'}}</div>
 				<i class="icon-keyboard_arrow_right"></i>
 			</div>			
 		</div>
@@ -248,7 +248,7 @@
 			&.fade-leave-active
 				transition:all .4s
 			&.fade-enter,
-			&.fade-leave-active
+			&.fade-leave-to
 				opacity:0
 				background:rgba(7,17,27,0)
 			
