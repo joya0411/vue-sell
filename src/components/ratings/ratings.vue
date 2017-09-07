@@ -28,7 +28,7 @@
             <ratingselect :selectType="selectType" :onlyContent="onlyContent" :ratings="ratings" @select="selectRating" @toggle="toggleContent"></ratingselect>
             <div class="rating-wrapper">
                 <ul>
-                    <li class="rating-item" v-for="rating in ratings" v-show="needShow(rating.rateType,rating.text)">
+                    <li class="rating-item" v-for="(rating,index) in ratings" :key="index" v-show="needShow(rating.rateType,rating.text)">
                         <div class="avatar">
                             <img :src="rating.avatar">
                         </div>
@@ -41,7 +41,7 @@
                             <p class="text">{{rating.text}}</p>
                             <div class="recommend" v-show="rating.recommend && rating.recommend.length">
                                 <span class="icon-thumb_up"></span>
-                                <span class="item" v-for="item in rating.recommend">{{item}}</span>
+                                <span class="item" v-for="(item,index) in rating.recommend" :key="index">{{item}}</span>
                             </div>
                             <div class="time">
                                 {{ rating.rateTime | formatDate}}

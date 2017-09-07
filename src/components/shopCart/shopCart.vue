@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="ball-container">
-                <div v-for="ball in balls">
+                <div v-for="(ball,index) in balls" :key="index">
                     <transition name="drop" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
                         <div class="ball" v-show="ball.show">
                             <div class="inner inner-hook"></div>
@@ -35,13 +35,13 @@
                     </div>
                     <div class="list-content" ref="listContent">
                         <ul>
-                            <li class="food border-1px" v-for="food in selectFoods">
+                            <li class="food border-1px" v-for="(food,index) in selectFoods" :key="index">
                                 <span class="name">{{food.name}}</span>
                                 <div class="price">
                                     {{ food.price*food.count}}
                                 </div>
                                 <div class="cartcontrol-wrapper">
-                                    <cartcontrol  @add="addFood" :food="food"></cartcontrol>
+                                    <cartcontrol @add="addFood" :food="food"></cartcontrol>
                                 </div>
                             </li>
                         </ul>
@@ -54,202 +54,201 @@
             </div>
         </transition>
     </div>
-
 </template>
 
 <script>
-    import cartcontrol from 'components/cartcontrol/cartcontrol';
-    import BScroll from 'better-scroll';
+import cartcontrol from 'components/cartcontrol/cartcontrol';
+import BScroll from 'better-scroll';
 
-    export default {
-        props:{
-            selectFoods:{
-                type:Array,
-                default(){
-                    return [];
-                }
-            },
-            deliveryPrice:{
-                type:Number,
-                default:0
-            },
-            minPrice:{
-                type:Number,
-                default:0
+export default {
+    props: {
+        selectFoods: {
+            type: Array,
+            default() {
+                return [];
             }
         },
-
-        components:{
-            cartcontrol
+        deliveryPrice: {
+            type: Number,
+            default: 0
         },
-        computed:{
-            /*
-             * 计算总价
-             */
-            totalPrice(){
-                let total = 0;
-                this.selectFoods.forEach((food)=>{
-                    total += food.price * food.count;
-                });
-                return total;
-            },
-            /*
-             * 计算总件数
-             */
-            totalCount(){
-                let count = 0;
-                this.selectFoods.forEach((food)=>{
-                    count += food.count;
-                });
-                return count;
-            },
-            /*
-             * 根据总价计算是否可以配送
-             */
-            payDesc(){
-                if ( this.totalPrice === 0 ){
-                    return `￥${this.minPrice}起送`;
-                } else if ( this.totalPrice < this.minPrice ){
-                    let diff = this.minPrice - this.totalPrice;
-                    return `还差${diff}元起送`;
-                } else {
-                    return `去结算`;
-                }
-            },
-            /*
-             * 更改样式：根据总价计算是否可以配送
-             */
-            pagClass(){
-                if ( this.totalPrice < this.minPrice ){
-                    return 'not-enough';
-                } else {
-                    return 'enough';
-                }
-            },
-            listShow(){
-                //没有数据，即折叠为真
-                if (!this.totalCount){
-                    this.fold = true;
-                    return false;
-                }
+        minPrice: {
+            type: Number,
+            default: 0
+        }
+    },
 
-                let show = !this.fold;
-                if (show){
-                    this.$nextTick(()=>{
-                        if (!this.scroll){
-                            this.scroll = new BScroll(this.$refs.listContent,{
-                                click:true
-                            });
-                        } else {
-                            this.scroll.refresh();
-                        }
-                        
-                    })
-                }
-                return show;
-                
+    components: {
+        cartcontrol
+    },
+    computed: {
+        /*
+         * 计算总价
+         */
+        totalPrice() {
+            let total = 0;
+            this.selectFoods.forEach((food) => {
+                total += food.price * food.count;
+            });
+            return total;
+        },
+        /*
+         * 计算总件数
+         */
+        totalCount() {
+            let count = 0;
+            this.selectFoods.forEach((food) => {
+                count += food.count;
+            });
+            return count;
+        },
+        /*
+         * 根据总价计算是否可以配送
+         */
+        payDesc() {
+            if (this.totalPrice === 0) {
+                return `￥${this.minPrice}起送`;
+            } else if (this.totalPrice < this.minPrice) {
+                let diff = this.minPrice - this.totalPrice;
+                return `还差${diff}元起送`;
+            } else {
+                return `去结算`;
             }
         },
-        data(){
-            return {
-                balls:[
-                    {
-                        show:false
-                    },
-                    {
-                        show:false
-                    },
-                    {
-                        show:false
-                    },
-                    {
-                        show:false
-                    },
-                    {
-                        show:false
-                    }
-                ],
-                dropBalls:[],
-                fold:true //折叠为真
+        /*
+         * 更改样式：根据总价计算是否可以配送
+         */
+        pagClass() {
+            if (this.totalPrice < this.minPrice) {
+                return 'not-enough';
+            } else {
+                return 'enough';
             }
         },
-        methods:{
-            drop(el){
-                for (let i=0;i<this.balls.length;i++){
-                    let ball = this.balls[i];
-                    if (!ball.show){
-                        ball.show = true;
-                        ball.el = el;
-                        this.dropBalls.push(ball);
-                        return;
-                    }
-                }
-            },
-            addFood(target){
-                this.drop(target);
-            },
-            beforeEnter(el){
-                let count = this.balls.length;
-                while(count--){
-                    let ball = this.balls[count];
-                    if (ball.show){
-                        let rect = ball.el.getBoundingClientRect();
-                        let x = rect.left - 22;
-                        let y = -( window.innerHeight - rect.top - 50);
-                        el.style.display='';
-                        el.style.webkitTransform = `translate3d(0,${y}px,0)`;
-                        el.style.transform = `translate3d(0,${y}px,0)`;
-                        let inner = el.getElementsByClassName('inner-hook')[0];
-                        inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
-                        inner.style.transform = `translate3d(${x}px,0,0)`;
-                    }
-                }
-            },
-            enter(el,done){
-                //触发浏览器重绘
-                let rf = el.offsetHeight;
-                this.$nextTick(()=>{
-                    el.style.webkitTransform = 'translate3d(0,0,0)';
-                    el.style.transform = 'translate3d(0,0,0)';
-                    let inner = el.getElementsByClassName('inner-hook')[0];
-                    inner.style.webkitTransform = 'translate3d(0,0,0)';
-                    inner.style.transform = 'translate3d(0,0,0)';
-                    el.addEventListener('transitionend',done);
-                })
-            },
-            afterEnter(el){
-                let ball = this.dropBalls.shift();
-                if (ball){
-                    ball.show = false;
-                    el.style.display='none';
-                }
-            },
-            /*
-             * 清空购物车列表
-             */
-            empty(){
-                this.selectFoods.forEach(food=>food.count=0);
-            },
-            /*
-             * 展示、隐藏购物车列表
-             */
-            toggleList(){
-                if (!this.totalCount){
-                    return;
-                }
-                this.fold = !this.fold;
-            },
-            hideList(){
+        listShow() {
+            //没有数据，即折叠为真
+            if (!this.totalCount) {
                 this.fold = true;
-            },
-            pay(){
-                if (this.totalPrice < this.minPrice) {
+                return false;
+            }
+
+            let show = !this.fold;
+            if (show) {
+                this.$nextTick(() => {
+                    if (!this.scroll) {
+                        this.scroll = new BScroll(this.$refs.listContent, {
+                            click: true
+                        });
+                    } else {
+                        this.scroll.refresh();
+                    }
+
+                })
+            }
+            return show;
+
+        }
+    },
+    data() {
+        return {
+            balls: [
+                {
+                    show: false
+                },
+                {
+                    show: false
+                },
+                {
+                    show: false
+                },
+                {
+                    show: false
+                },
+                {
+                    show: false
+                }
+            ],
+            dropBalls: [],
+            fold: true //折叠为真
+        }
+    },
+    methods: {
+        drop(el) {
+            for (let i = 0; i < this.balls.length; i++) {
+                let ball = this.balls[i];
+                if (!ball.show) {
+                    ball.show = true;
+                    ball.el = el;
+                    this.dropBalls.push(ball);
                     return;
                 }
-                alert(`请支付￥${this.totalPrice}元`)
             }
+        },
+        addFood(target) {
+            this.drop(target);
+        },
+        beforeEnter(el) {
+            let count = this.balls.length;
+            while (count--) {
+                let ball = this.balls[count];
+                if (ball.show) {
+                    let rect = ball.el.getBoundingClientRect();
+                    let x = rect.left - 22;
+                    let y = -(window.innerHeight - rect.top - 50);
+                    el.style.display = '';
+                    el.style.webkitTransform = `translate3d(0,${y}px,0)`;
+                    el.style.transform = `translate3d(0,${y}px,0)`;
+                    let inner = el.getElementsByClassName('inner-hook')[0];
+                    inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
+                    inner.style.transform = `translate3d(${x}px,0,0)`;
+                }
+            }
+        },
+        enter(el, done) {
+            //触发浏览器重绘
+            let rf = el.offsetHeight;
+            this.$nextTick(() => {
+                el.style.webkitTransform = 'translate3d(0,0,0)';
+                el.style.transform = 'translate3d(0,0,0)';
+                let inner = el.getElementsByClassName('inner-hook')[0];
+                inner.style.webkitTransform = 'translate3d(0,0,0)';
+                inner.style.transform = 'translate3d(0,0,0)';
+                el.addEventListener('transitionend', done);
+            })
+        },
+        afterEnter(el) {
+            let ball = this.dropBalls.shift();
+            if (ball) {
+                ball.show = false;
+                el.style.display = 'none';
+            }
+        },
+        /*
+         * 清空购物车列表
+         */
+        empty() {
+            this.selectFoods.forEach(food => food.count = 0);
+        },
+        /*
+         * 展示、隐藏购物车列表
+         */
+        toggleList() {
+            if (!this.totalCount) {
+                return;
+            }
+            this.fold = !this.fold;
+        },
+        hideList() {
+            this.fold = true;
+        },
+        pay() {
+            if (this.totalPrice < this.minPrice) {
+                return;
+            }
+            alert(`请支付￥${this.totalPrice}元`)
         }
     }
+}
 </script>
 
 <style lang="stylus">
