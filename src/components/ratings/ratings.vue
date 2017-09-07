@@ -170,8 +170,8 @@ export default {
                 @media only screen and (max-width: 320px)
                     padding-left: 6px
                 .score-wrapper
-                margin-bottom: 8px
-                font-size: 0
+                    margin-bottom: 8px
+                    font-size: 0
                 .title
                     display: inline-block
                     line-height: 18px

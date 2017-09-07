@@ -287,9 +287,9 @@ export default {
                         font-size: 10px
                         color: rgb(147, 153, 159)
                     .text
-                    line-height: 16px
-                    font-size: 12px
-                    color: rgb(7, 17, 27)
+                        line-height: 16px
+                        font-size: 12px
+                        color: rgb(7, 17, 27)
                     .icon-thumb_up, .icon-thumb_down
                         margin-right: 4px
                         line-height: 16px
