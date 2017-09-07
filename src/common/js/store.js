@@ -1,0 +1,30 @@
+export function setLocalStorage(id, key, value) {
+    console.log(1);
+    let seller = localStorage.__seller__;
+    if (!seller) {
+        seller = {};
+        seller[id] = {};
+    } else {
+        seller = JSON.parse(seller);
+        if (!seller[id]) {
+            seller[id] = {};
+        }
+    }
+
+    seller[id][key] = value;
+
+    localStorage.__seller__ = JSON.stringify(seller);
+}
+
+export function getLocalStorage(id, key, def) {
+    let seller = localStorage.__seller__;
+    if (!seller) {
+        return def;
+    }
+    seller = JSON.parse(seller)[id];
+    if (!seller) {
+        return def;
+    }
+    let ret = seller[key];
+    return ret || def;
+}

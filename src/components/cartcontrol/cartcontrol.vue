@@ -1,56 +1,56 @@
 <template>
     <div class="cartcontrol">
         <transition name="fade">
-            <div class="cart-decrease" v-show="food.count>0" @click="decreaseCart">
+            <div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart">
                 <i class="icon-remove_circle_outline"></i>
             </div>
         </transition>
         <div class="cart-count" v-if="food.count">{{food.count}}</div>
-        <div class="cart-add" @click="addCart">
+        <div class="cart-add" @click.stop.prevent="addCart">
             <i class="icon-add_circle"></i>
         </div>
     </div>
 </template>
 
 <script>
-    import Vue from 'vue';
+import Vue from 'vue';
 
-    export default {
-        props:{
-            food:{
-                type:Object
+export default {
+    props: {
+        food: {
+            type: Object
+        }
+    },
+    created() {
+    },
+    methods: {
+        /*
+         * 购买加1
+         */
+        addCart(event) {
+            if (!event._constructed) {
+                return;
             }
+            if (!this.food.count) {
+                Vue.set(this.food, 'count', 1);
+            } else {
+                this.food.count++;
+            }
+            this.$emit('add', event.target);
         },
-        created(){
-        },
-        methods:{
-            /*
-             * 购买加1
-             */
-            addCart(event){
-                if (!event._constructed){
-                    return;
-                }
-                if ( !this.food.count ){
-                    Vue.set(this.food,'count',1);
-                } else {
-                    this.food.count++;
-                }
-                this.$emit('add',event.target);
-            },
-            /*
-             * 购买减1
-             */
-            decreaseCart(event){
-                if (!event._constructed){
-                    return;
-                }
-                if (this.food.count){
-                    this.food.count--;
-                }
+        /*
+         * 购买减1
+         */
+        decreaseCart(event) {
+            if (!event._constructed) {
+                return;
+            }
+            if (this.food.count) {
+                this.food.count--;
             }
         }
     }
+}
 </script>
 
 
