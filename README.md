@@ -27,6 +27,7 @@ npm run build
 ## 项目截图
 
 <img src="./mdPic/1.png" width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<img src="./mdPic/2.png" width="40%">
+
 <img src="./mdPic/3.png" width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<img src="./mdPic/4.png" width="40%">
 
 ## 页面与组件关系
