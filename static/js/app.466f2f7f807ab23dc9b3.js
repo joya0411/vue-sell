@@ -173,7 +173,7 @@ webpackJsonp([1], {
     });
 
     /***/
-}),
+  }),
 
 /***/ 101:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -271,13 +271,13 @@ webpackJsonp([1], {
 
           this.$http.get(expressPath).then(function (response) {
             response = response.body;
-            if (response.errno == ERR_OK) {
-              _this.goods = response.data.goods;
-              _this.$nextTick(function () {
-                _this._initScroll();
-                _this._calculateHeight();
-              });
-            }
+            // if (response.errno == ERR_OK) {
+            _this.goods = response.data.goods;
+            _this.$nextTick(function () {
+              _this._initScroll();
+              _this._calculateHeight();
+            });
+            // }
           });
         },
 
@@ -396,10 +396,10 @@ webpackJsonp([1], {
         }
       });
       /* WEBPACK VAR INJECTION */
-}.call(__webpack_exports__, __webpack_require__(4)))
+    }.call(__webpack_exports__, __webpack_require__(4)))
 
     /***/
-}),
+  }),
 
 /***/ 102:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -507,7 +507,7 @@ webpackJsonp([1], {
     });
 
     /***/
-}),
+  }),
 
 /***/ 103:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -609,14 +609,14 @@ webpackJsonp([1], {
 
           this.$http.get(expressPath).then(function (response) {
             response = response.body;
-            if (response.errno === ERR_OK) {
-              _this.ratings = response.data.ratings;
-              _this.$nextTick(function () {
-                _this.scroll = new __WEBPACK_IMPORTED_MODULE_3_better_scroll___default.a(_this.$refs.ratings, {
-                  click: true
-                });
+            // if (response.errno === ERR_OK) {
+            _this.ratings = response.data.ratings;
+            _this.$nextTick(function () {
+              _this.scroll = new __WEBPACK_IMPORTED_MODULE_3_better_scroll___default.a(_this.$refs.ratings, {
+                click: true
               });
-            }
+            });
+            // }
           });
         },
 
@@ -661,10 +661,10 @@ webpackJsonp([1], {
         }
       });
       /* WEBPACK VAR INJECTION */
-}.call(__webpack_exports__, __webpack_require__(4)))
+    }.call(__webpack_exports__, __webpack_require__(4)))
 
     /***/
-}),
+  }),
 
 /***/ 104:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -754,7 +754,7 @@ webpackJsonp([1], {
     });
 
     /***/
-}),
+  }),
 
 /***/ 105:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -932,7 +932,7 @@ webpackJsonp([1], {
     });
 
     /***/
-}),
+  }),
 
 /***/ 106:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -1198,7 +1198,7 @@ webpackJsonp([1], {
     });
 
     /***/
-}),
+  }),
 
 /***/ 107:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -1214,7 +1214,7 @@ webpackJsonp([1], {
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
     /***/
-}),
+  }),
 
 /***/ 108:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -1271,7 +1271,7 @@ webpackJsonp([1], {
     });
 
     /***/
-}),
+  }),
 
 /***/ 109:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -1292,7 +1292,7 @@ webpackJsonp([1], {
     });
 
     /***/
-}),
+  }),
 
 /***/ 110:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -1335,7 +1335,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 111:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -1359,7 +1359,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 112:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -1410,7 +1410,7 @@ webpackJsonp([1], {
     }).$mount('#app');
 
     /***/
-}),
+  }),
 
 /***/ 143:
 /***/ (function (module, exports) {
@@ -1418,7 +1418,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 144:
 /***/ (function (module, exports) {
@@ -1426,7 +1426,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 145:
 /***/ (function (module, exports) {
@@ -1434,7 +1434,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 146:
 /***/ (function (module, exports) {
@@ -1442,7 +1442,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 147:
 /***/ (function (module, exports) {
@@ -1450,7 +1450,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 148:
 /***/ (function (module, exports) {
@@ -1458,7 +1458,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 149:
 /***/ (function (module, exports) {
@@ -1466,7 +1466,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 150:
 /***/ (function (module, exports) {
@@ -1474,7 +1474,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 151:
 /***/ (function (module, exports) {
@@ -1482,7 +1482,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 152:
 /***/ (function (module, exports) {
@@ -1490,7 +1490,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 153:
 /***/ (function (module, exports) {
@@ -1498,7 +1498,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 154:
 /***/ (function (module, exports) {
@@ -1506,7 +1506,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 247:
 /***/ (function (module, exports, __webpack_require__) {
@@ -1531,7 +1531,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 248:
 /***/ (function (module, exports, __webpack_require__) {
@@ -1556,7 +1556,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 249:
 /***/ (function (module, exports, __webpack_require__) {
@@ -1581,7 +1581,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 250:
 /***/ (function (module, exports, __webpack_require__) {
@@ -1606,7 +1606,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 251:
 /***/ (function (module, exports) {
@@ -1726,7 +1726,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 252:
 /***/ (function (module, exports) {
@@ -1793,7 +1793,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 253:
 /***/ (function (module, exports) {
@@ -1842,7 +1842,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 254:
 /***/ (function (module, exports) {
@@ -1864,7 +1864,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 255:
 /***/ (function (module, exports) {
@@ -1885,7 +1885,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 256:
 /***/ (function (module, exports) {
@@ -2010,7 +2010,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 257:
 /***/ (function (module, exports) {
@@ -2140,7 +2140,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 258:
 /***/ (function (module, exports) {
@@ -2310,7 +2310,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 259:
 /***/ (function (module, exports) {
@@ -2325,7 +2325,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 260:
 /***/ (function (module, exports) {
@@ -2366,7 +2366,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 261:
 /***/ (function (module, exports) {
@@ -2486,7 +2486,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 262:
 /***/ (function (module, exports) {
@@ -2602,7 +2602,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 268:
 /***/ (function (module, exports) {
@@ -2610,7 +2610,7 @@ webpackJsonp([1], {
     /* (ignored) */
 
     /***/
-}),
+  }),
 
 /***/ 44:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2635,7 +2635,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 45:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2660,7 +2660,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 46:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2685,7 +2685,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 48:
 /***/ (function (module, exports) {
@@ -2696,7 +2696,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 49:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -2734,7 +2734,7 @@ webpackJsonp([1], {
     }
 
     /***/
-}),
+  }),
 
 /***/ 87:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2759,7 +2759,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 89:
 /***/ (function (module, exports) {
@@ -2767,7 +2767,7 @@ webpackJsonp([1], {
     // removed by extract-text-webpack-plugin
 
     /***/
-}),
+  }),
 
 /***/ 90:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2792,7 +2792,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 91:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2817,7 +2817,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 92:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2842,7 +2842,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 93:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2867,7 +2867,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 96:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2881,7 +2881,7 @@ webpackJsonp([1], {
 
 
     /***/
-}),
+  }),
 
 /***/ 97:
 /***/ (function (module, exports, __webpack_require__) {
@@ -2927,10 +2927,10 @@ webpackJsonp([1], {
       }
 
       /* WEBPACK VAR INJECTION */
-}.call(exports, "/", __webpack_require__(4)))
+    }.call(exports, "/", __webpack_require__(4)))
 
     /***/
-}),
+  }),
 
 /***/ 98:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -3014,10 +3014,10 @@ webpackJsonp([1], {
 
           this.$http.get(expressPath).then(function (response) {
             response = response.body;
-            if (response.errno === ERR_OK) {
-              _this.seller = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign___default()({}, _this.seller, response.data.seller);
-              console.log(_this.seller);
-            }
+            // if (response.errno === ERR_OK) {
+            _this.seller = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign___default()({}, _this.seller, response.data.seller);
+            console.log(_this.seller);
+            // }
           });
         },
 
@@ -3026,10 +3026,10 @@ webpackJsonp([1], {
         }
       });
       /* WEBPACK VAR INJECTION */
-}.call(__webpack_exports__, __webpack_require__(4)))
+    }.call(__webpack_exports__, __webpack_require__(4)))
 
     /***/
-}),
+  }),
 
 /***/ 99:
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -3091,6 +3091,6 @@ webpackJsonp([1], {
     });
 
     /***/
-})
+  })
 
 }, [112]);
