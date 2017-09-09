@@ -344,6 +344,7 @@ var ERR_OK = 0;
 			//github环境
 			var prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
 			this.$http.get(prodPath).then(function (response) {
+				response = response.body;
 				_this.seller = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign___default()({}, _this.seller, response.seller);
 			});
 		} else {
@@ -695,6 +696,7 @@ var ERR_OK = 0;
             //github环境
             var prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
             this.$http.get(prodPath).then(function (response) {
+                response = response.body;
                 _this.goods = response.goods;
                 _this.$nextTick(function () {
                     _this._initScroll();

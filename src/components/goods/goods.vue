@@ -78,6 +78,7 @@ export default {
             //github环境
             let prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
             this.$http.get(prodPath).then(response => {
+                response = response.body;
                 this.goods = response.goods;
                 this.$nextTick(() => {
                     this._initScroll();
