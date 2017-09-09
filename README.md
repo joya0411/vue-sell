@@ -9,6 +9,7 @@
 ### 移动端演示
 
 扫二维码在手机上查看效果更好
+扫二维码在手机上查看效果更好
 
 <img src="./mdPic/QRCode.png">
 
@@ -27,10 +28,10 @@ npm run build
 ## 项目截图
 
 <div style="font-size:0">
-    <img src="./mdPic/1.png" style="display:inline-block;width:50%;padding:10px;box-sizing:border-box;">
-    <img src="./mdPic/2.png" style="display:inline-block;width:50%;padding:10px;box-sizing:border-box;">
-    <img src="./mdPic/3.png" style="display:inline-block;width:50%;padding:10px;box-sizing:border-box;">
-    <img src="./mdPic/4.png" style="display:inline-block;width:50%;padding:10px;box-sizing:border-box;">
+    <img src="./mdPic/1.png" style="display:inline-block;width:40%;padding:10px;box-sizing:border-box;">
+    <img src="./mdPic/2.png" style="display:inline-block;width:40%;padding:10px;box-sizing:border-box;">
+    <img src="./mdPic/3.png" style="display:inline-block;width:40%;padding:10px;box-sizing:border-box;">
+    <img src="./mdPic/4.png" style="display:inline-block;width:40%;padding:10px;box-sizing:border-box;">
 </div>
 
 ## 页面与组件关系
