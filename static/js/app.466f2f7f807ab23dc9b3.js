@@ -272,7 +272,7 @@ webpackJsonp([1], {
           this.$http.get(expressPath).then(function (response) {
             response = response.body;
             // if (response.errno == ERR_OK) {
-            _this.goods = response.data.goods;
+            _this.goods = response.goods;
             _this.$nextTick(function () {
               _this._initScroll();
               _this._calculateHeight();
@@ -610,7 +610,7 @@ webpackJsonp([1], {
           this.$http.get(expressPath).then(function (response) {
             response = response.body;
             // if (response.errno === ERR_OK) {
-            _this.ratings = response.data.ratings;
+            _this.ratings = response.ratings;
             _this.$nextTick(function () {
               _this.scroll = new __WEBPACK_IMPORTED_MODULE_3_better_scroll___default.a(_this.$refs.ratings, {
                 click: true
@@ -3015,7 +3015,7 @@ webpackJsonp([1], {
           this.$http.get(expressPath).then(function (response) {
             response = response.body;
             // if (response.errno === ERR_OK) {
-            _this.seller = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign___default()({}, _this.seller, response.data.seller);
+            _this.seller = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign___default()({}, _this.seller, response.seller);
             console.log(_this.seller);
             // }
           });
