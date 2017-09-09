@@ -55,6 +55,7 @@ import BScroll from 'better-scroll';
 import shopCart from '../shopCart/shopCart';
 import cartcontrol from 'components/cartcontrol/cartcontrol';
 import food from 'components/food/food';
+import { isGithub } from 'common/js/util';
 
 const ERR_OK = 0;
 export default {
@@ -73,18 +74,29 @@ export default {
     },
     created() {
         this.classMap = ['decrease', 'discount', 'guarantee', 'invoice', 'special'];
-
-        this.$http.get('/api/goods').then(response => {
-            response = response.body;
-            if (response.errno == ERR_OK) {
-                this.goods = response.data;
+        if ( isGithub() ){
+            //github环境
+            let prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
+            this.$http.get(prodPath).then(response => {
+                this.goods = response.goods;
                 this.$nextTick(() => {
                     this._initScroll();
                     this._calculateHeight();
                 });
-
-            }
-        })
+            })        
+        } else {
+            this.$http.get('/api/goods').then(response => {
+                response = response.body;
+                if (response.errno == ERR_OK) {
+                    this.goods = response.data;
+                    this.$nextTick(() => {
+                        this._initScroll();
+                        this._calculateHeight();
+                    });
+                }
+            })
+        }
+        
     },
     computed: {
         currentIndex() {

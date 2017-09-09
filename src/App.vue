@@ -43,8 +43,7 @@
 
 <script>
 import header from 'components/header/header';
-import { urlParse } from 'common/js/util';
-
+import { urlParse,isGithub } from 'common/js/util';
 const ERR_OK = 0;
 
 export default {
@@ -59,12 +58,21 @@ export default {
 		}
 	},
 	created() {
-		this.$http.get('/api/seller').then(response => {
-			response = response.body;
-			if (response.errno === ERR_OK) {
-				this.seller = Object.assign({}, this.seller, response.data);
-			}
-		});
+		if (isGithub()) {
+			//github环境
+			let prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
+			this.$http.get(prodPath).then(response => {
+				this.seller = Object.assign({}, this.seller, response.seller);
+			});
+		} else{
+			//dev环境
+			this.$http.get('/api/seller').then(response => {
+				response = response.body;
+				if (response.errno === ERR_OK) {
+					this.seller = Object.assign({}, this.seller, response.data);
+				}
+			});
+		}
 	},
 	components: {
 		'v-header': header

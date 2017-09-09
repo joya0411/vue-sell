@@ -60,6 +60,7 @@ import split from 'components/split/split';
 import ratingselect from 'components/ratingselect/ratingselect';
 import BScroll from 'better-scroll';
 import { formatDate } from 'common/js/date';
+import { isGithub } from 'common/js/util';
 
 const ERR_OK = 0;
 const ALL = 2;
@@ -78,17 +79,32 @@ export default {
         }
     },
     created() {
-        this.$http.get('/api/ratings').then(response => {
-            response = response.body;
-            if (response.errno === ERR_OK) {
-                this.ratings = response.data;
+        if ( isGithub() ){
+            //github环境
+            let prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
+            this.$http.get(prodPath).then(response => {
+                response = response.body;
+                this.ratings = response.ratings;
                 this.$nextTick(() => {
                     this.scroll = new BScroll(this.$refs.ratings, {
                         click: true
                     });
                 });
-            }
-        })
+            })
+        } else {
+            this.$http.get('/api/ratings').then(response => {
+                response = response.body;
+                if (response.errno === ERR_OK) {
+                    this.ratings = response.data;
+                    this.$nextTick(() => {
+                        this.scroll = new BScroll(this.$refs.ratings, {
+                            click: true
+                        });
+                    });
+                }
+            })
+        }
+        
     },
     methods: {
         selectRating(type) {

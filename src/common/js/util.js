@@ -13,3 +13,7 @@ export function urlParse() {
     }
     return obj;
 }
+
+export function isGithub() {
+    return location.host === 'joya0411.github.io';
+}
