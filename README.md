@@ -1,6 +1,6 @@
 # 学习Vue高仿饿了么点餐系统
 
-> stylus、webpack、vue2.0、vue-router、vue-resource、better-scroll
+> stylus、webpack、vue2.0、vue-router、axios、better-scroll
 
 ## 演示
 

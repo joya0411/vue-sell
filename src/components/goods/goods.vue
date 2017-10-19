@@ -56,6 +56,8 @@ import shopCart from '../shopCart/shopCart';
 import cartcontrol from 'components/cartcontrol/cartcontrol';
 import food from 'components/food/food';
 import { isGithub } from 'common/js/util';
+import dataAjax from '../../../data.json'
+import axios from 'axios'
 
 const ERR_OK = 0;
 export default {
@@ -77,17 +79,17 @@ export default {
         if ( isGithub() ){
             //github环境
             let prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
-            this.$http.get(prodPath).then(response => {
-                response = response.body;
+            axios.get(prodPath).then(response => {
+                response = response.data;
                 this.goods = response.goods;
                 this.$nextTick(() => {
                     this._initScroll();
                     this._calculateHeight();
                 });
-            })        
+            }) 
         } else {
-            this.$http.get('/api/goods').then(response => {
-                response = response.body;
+            axios.get('api/goods').then(response => {
+                response = response.data;
                 if (response.errno == ERR_OK) {
                     this.goods = response.data;
                     this.$nextTick(() => {

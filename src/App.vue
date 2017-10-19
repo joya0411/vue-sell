@@ -45,6 +45,7 @@
 import header from 'components/header/header';
 import { urlParse,isGithub } from 'common/js/util';
 const ERR_OK = 0;
+import axios from 'axios'
 
 export default {
 	data() {
@@ -61,14 +62,14 @@ export default {
 		if (isGithub()) {
 			//github环境
 			let prodPath = 'https://joya0411.github.io/vue-sell' + '/api/data.json';
-			this.$http.get(prodPath).then(response => {
-				response = response.body;
+			axios.get(prodPath).then(response => {
+				response = response.data;
 				this.seller = Object.assign({}, this.seller, response.seller);
 			});
 		} else{
 			//dev环境
-			this.$http.get('/api/seller').then(response => {
-				response = response.body;
+			axios.get('/api/seller').then(response => {
+				response = response.data;
 				if (response.errno === ERR_OK) {
 					this.seller = Object.assign({}, this.seller, response.data);
 				}
