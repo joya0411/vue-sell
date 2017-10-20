@@ -1,0 +1,1 @@
+export const SET_FAVORITELIST = 'SET_FAVORITELIST'

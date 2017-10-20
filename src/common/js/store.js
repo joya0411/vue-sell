@@ -1,5 +1,4 @@
 export function setLocalStorage(id, key, value) {
-    console.log(1);
     let seller = localStorage.__seller__;
     if (!seller) {
         seller = {};

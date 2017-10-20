@@ -19,7 +19,7 @@
                         <ul>
                             <li class="food-item border-1px" v-for="(food,foodIndex) in goodsItem.foods" :key="foodIndex" @click="selectFood(food,$event)">
                                 <div class="img-wrap">
-                                    <img :src="food.image">
+                                    <img v-lazy="food.image">
                                 </div>
                                 <div class="content">
                                     <h2>{{food.name}}</h2>

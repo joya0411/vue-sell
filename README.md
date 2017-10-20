@@ -1,6 +1,6 @@
 # 学习Vue高仿饿了么点餐系统
 
-> stylus、webpack、vue2.0、vue-router、axios、better-scroll
+> stylus、webpack、vue2.0、vue-router、axios、vuex、better-scroll
 
 ## 演示
 
@@ -51,9 +51,10 @@ npm run build
 - 列表滚动联动
 - 小球飞入动画（vue的父子组件通讯、贝塞尔曲线）
 - vue的自定义过滤器(用于日期时间)
-- 数据存取localStorag
+- 收藏功能，使用vuex和localStorage
 - express实现mock模拟后台数据
 - vue组件缓存，防止多次发ajax的keep-alive
+- 图片使用vue-lazyload
 
 ### 实现
 
@@ -100,4 +101,6 @@ npm run build
 8. watch:{'seller'(){}}
 9. 动画`<transition></transition>`,css实现的动画，js钩子实现动画
 10. 防止来次发ajax`<keep-alive></keep-alive>`
+11. 使用vuex
+12. vue-router懒加载
 

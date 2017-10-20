@@ -29,7 +29,7 @@
                     </li>
                 </ul>
                 <div class="favorite" @click="toggleFavorite">
-                    <span class="icon-favorite" :class="{'active':favorite}"></span>
+                    <span class="icon-favorite" :class="{'active':favoriteResult}"></span>
                     <span class="text">{{favoriteText}}</span>
                 </div>
             </div>
@@ -73,7 +73,8 @@
 import BScroll from 'better-scroll';
 import star from 'components/star/star';
 import split from 'components/split/split';
-import { setLocalStorage, getLocalStorage } from 'common/js/store';
+// import { setLocalStorage, getLocalStorage } from 'common/js/store';
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     props: {
@@ -83,14 +84,23 @@ export default {
     },
     data() {
         return {
-            favorite: getLocalStorage(this.seller.id, 'favorite', false),
+            // favorite: getLocalStorage(this.seller.id, 'favorite', false),
+            favoriteResult: false,
             classMap: []
         }
     },
     computed: {
         favoriteText() {
-            return this.favorite ? '已收藏' : '收藏';
-        }
+            this.favoriteResult = this.favorite({
+                id: this.seller.id,
+                key: 'favorite',
+                value: false  // localStorage取不到为false
+            });
+            return this.favoriteResult ? '已收藏' : '收藏';
+        },
+        ...mapGetters([
+            'favorite'
+        ])
     },
     created() {
         this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
@@ -143,10 +153,19 @@ export default {
             if (!event._constructed) {
                 return;
             }
-            this.favorite = !this.favorite;
+            this.favoriteResult = !this.favoriteResult;
 
-            setLocalStorage(this.seller.id, 'favorite', this.favorite);
-        }
+            // setLocalStorage(this.seller.id, 'favorite', this.favorite);
+
+            this.aFavoriteList({
+                id:this.seller.id, 
+                key:'favorite', 
+                value:this.favoriteResult
+            })
+        },
+        ...mapActions([
+            'aFavoriteList'
+        ])
     },
     components: {
         star,
